@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition>
+        <p:dialog id="DepartmentCreateDlg" widgetVar="DepartmentCreateDlg" modal="true" resizable="false" header="#{bundle.CreateEmployeeTitle}">
+            <h:form id="DepartmentCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDepartmentLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{departmentController.department.id}" title="#{bundle.CreateDepartmentTitle_id}" required="true" requiredMessage="#{bundle.CreateDepartmentRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateDepartmentLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{departmentController.department.name}" title="#{bundle.CreateDepartmentTitle_name}" />
+                </h:panelGrid>
+                    <p:commandButton actionListener="#{employeeController.create}" value="#{bundle.Save}" update="display,:growl" oncomplete="handleSubmit(args,'EmployeeCreateDlg');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeCreateDlg.hide()"/>
+                </h:panelGroup>
+            </h:form>
+            <br />
+            <h:commandLink action="#{departmentController.create}" value="#{bundle.CreateDepartmentSaveLink}" />
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.CreateDepartmentIndexLink}"/>
+        </p:dialog>
+    </ui:composition>
+</html>

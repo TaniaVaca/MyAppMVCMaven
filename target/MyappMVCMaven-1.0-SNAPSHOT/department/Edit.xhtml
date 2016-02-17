@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <p:dialog id="DepartmentEditDialog" widgetVar="DepartmentEditDialog" modal="true" resizable="false" header="#{bundle.EditUserTitle}">
+            <h:form id="DepartmentEditForm">
+                <h:panelGroup id="display">
+                     <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditDepartmentLabel_id}" for="id" />
+                        <h:inputText id="id" value="#{departmentController.department.id}" title="#{bundle.EditDepartmentTitle_id}" required="true" requiredMessage="#{bundle.EditDepartmentRequiredMessage_id}"/>
+                        <h:outputLabel value="#{bundle.EditDepartmentLabel_name}" for="name" />
+                        <h:inputText id="name" value="#{departmentController.department.name}" title="#{bundle.EditDepartmentTitle_name}" />
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{departmentController.update}" value="#{bundle.Save}" update="display,:DepartmentListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DepartmentEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DepartmentEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DepartmentViewDialog" widgetVar="DepartmentViewDialog" modal="true" resizable="false" header="#{bundle.ViewEmployeeTitle}">
+            <h:form id="DepartmentViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewDepartmentLabel_id}"/>
+                        <h:outputText value="#{departmentController.department.id}" title="#{bundle.ViewDepartmentTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDepartmentLabel_name}"/>
+                        <h:outputText value="#{departmentController.department.name}" title="#{bundle.ViewDepartmentTitle_name}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DepartmentViewDialog.hide()"/>
+                </h:panelGroup>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEmployeeEditLink}"/>
+                <br />
+                <h:commandLink action="#{departmentController.prepareCreate}" value="#{bundle.ViewDepartmentCreateLink}" />
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDepartmentIndexLink}"/>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+
+</html>

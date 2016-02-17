@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition>
+
+        <p:dialog id="EmployeeViewDialog" widgetVar="EmployeeViewDialog" modal="true" resizable="false" header="#{bundle.ViewEmployeeTitle}">
+            <h:form id="EmployeeViewForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_id}"/>
+                        <h:outputText value="#{employeeController.employee.id}" title="#{bundle.ViewEmployeeTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_name}"/>
+                        <h:outputText value="#{employeeController.employee.name}" title="#{bundle.ViewEmployeeTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_salary}"/>
+                        <h:outputText value="#{employeeController.employee.salary}" title="#{bundle.ViewEmployeeTitle_salary}"/>
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_departmentid}"/>
+                        <h:outputText value="#{employeeController.employee.departmentid}" title="#{bundle.ViewEmployeeTitle_departmentid}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmployeeViewDialog.hide()"/>
+                </h:panelGroup>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEmployeeEditLink}"/>
+                <br />
+                <h:commandLink action="#{employeeController.prepareCreate}" value="#{bundle.ViewEmployeeCreateLink}" />
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEmployeeIndexLink}"/>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

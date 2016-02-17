@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" >
+    
+    <ui:composition >
+        <ui:define name="body">
+            <f:event listener="#{departmentController.iniciarLista()}" type="preRenderView" />
+                <h:form id="DepartmentListForm">
+                        <p:dataTable id="datalist" var="dep" value="#{departmentController.listDepartments}" selection="#{departmentController.department}" rowKey="dep.id">
+                           
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListDepartmentTitle_id}"/>
+                                </f:facet>
+                                <h:outputText value="#{dep.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListDepartmentTitle_name}"/>
+                                </f:facet>
+                                <h:outputText value="#{dep.name}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus" value="#{bundle.CreateDepartmentTitle}" actionListener="#{departmentController.prepareCreate}" oncomplete="PF('DepartmentCreateDlg').show()"/>
+                                <br />
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.ViewDepartmentTitle}" oncomplete="PF('DepartmentViewDialog').show()" disabled="#{empty departmentController.department}"/>
+                                <br />
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.EditDepartmentTitle}" oncomplete="PF('DepartmentEditDialog').show()" disabled="#{empty departmentController.department}"/>
+                                <br />
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{departmentController.destroy}" disabled="#{empty departmentController.department}"/>
+                           </f:facet>
+                        </p:dataTable>
+                        <br />
+                        <br />
+                        <h:link outcome="/index" value="#{bundle.ListDepartmentIndexLink}"/>
+                </h:form>
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>

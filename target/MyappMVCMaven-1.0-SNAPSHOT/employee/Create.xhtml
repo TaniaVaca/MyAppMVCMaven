@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+    
+        <p:dialog id="EmployeeCreateDlg" widgetVar="EmployeeCreateDlg" modal="true" resizable="false" header="#{bundle.CreateEmployeeTitle}">
+            <h:form id="EmployeeCreateForm">
+                <h:panelGroup id="display">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateEmployeeLabel_id}" for="id" />
+                        <h:inputText id="id" value="#{employeeController.employee.id}" title="#{bundle.CreateEmployeeTitle_id}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_id}"/>
+                        <h:outputLabel value="#{bundle.CreateEmployeeLabel_name}" for="name" />
+                        <h:inputText id="name" value="#{employeeController.employee.name}" title="#{bundle.CreateEmployeeTitle_name}" />
+                        <h:outputLabel value="#{bundle.CreateEmployeeLabel_salary}" for="salary" />
+                        <h:inputText id="salary" value="#{employeeController.employee.salary}" title="#{bundle.CreateEmployeeTitle_salary}" />
+                        <h:outputLabel value="#{bundle.CreateEmployeeLabel_departmentid}" for="departmentid" />
+                        <h:selectOneMenu id="departmentid" value="#{employeeController.employee.departmentid}" title="#{bundle.CreateEmployeeTitle_departmentid}" >
+                            <f:selectItems value="#{departmentController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton actionListener="#{employeeController.create}" value="#{bundle.Save}" oncomplete="handleSubmit(args,'EmployeeCreateDlg');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeCreateDlg.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+</html>
